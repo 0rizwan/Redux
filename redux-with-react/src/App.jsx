@@ -1,34 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react'
+import Account from './components/Account.jsx'
+import Bonus from './components/Bonus.jsx'
 
-function App() {
-  const [count, setCount] = useState(0)
+function App({ store }) {
+  const [amount, setAmount] = useState(0);
+  const [bonus, setBonus] = useState(0);
+  const [inputVal, setInputVal] = useState(0);
+
+  function incrementAmt() {
+    setAmount(amount + 1);
+  }
+
+  function decrementAmt() {
+    setAmount(amount - 1);
+  }
+
+  function incrementAmtByVal() {
+    setAmount(parseInt(amount) + parseInt(inputVal));
+    setInputVal(0);
+  }
+
+  function onType(e) {
+    setInputVal(e.target.value);
+  }
+
+  function incrementBonus() {
+    setBonus(bonus + 1);
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div style={{ border: '1px solid black', padding: '20px' }}>
+      <h3>App</h3>
+      <div>Current Account : {amount} </div>
+      <div>Total Bonus : {bonus} </div>
+      <Account amount={amount} incrementFn={incrementAmt} decrementFn={decrementAmt} inputVal={inputVal} onType={onType} incrementAmtByVal={incrementAmtByVal} />
+      <Bonus store={store} bonus={bonus} incrementFn={incrementBonus} />
+    </div>
   )
 }
 
