@@ -1,6 +1,6 @@
 import { decrement, getUserAccFullfiled, getUserAccPending, getUserAccRejected, increment, incrementByVal } from "../actions/action";
 
-export default function accountsReducer(state = { amount: 1 }, action) {
+export default function accountsReducer(state = { amount: 100 }, action) {
     switch (action.type) {
         case getUserAccPending:
             return { ...state, pending: true };
@@ -13,7 +13,7 @@ export default function accountsReducer(state = { amount: 1 }, action) {
         case decrement:
             return { amount: state.amount - 1 };
         case incrementByVal:
-            return { amount: state.amount + action.payload };
+            return { amount: state.amount + parseInt(action.payload) };
         default:
             return state;
     }

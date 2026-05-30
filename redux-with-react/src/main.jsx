@@ -6,6 +6,7 @@ import accountsReducer from './reducers/account.js'
 import bonusReducer from './reducers/bonus.js'
 import { logger } from 'redux-logger'
 import { thunk } from 'redux-thunk'
+import { Provider } from 'react-redux'
 
 const store = createStore(
   combineReducers({
@@ -15,8 +16,8 @@ const store = createStore(
   applyMiddleware(logger, thunk)
 );
 
-console.log(store.getState());
-
 createRoot(document.getElementById('root')).render(
-  <App store={store} />
+  <Provider store={store}>
+    <App />
+  </Provider>
 );
