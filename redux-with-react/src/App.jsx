@@ -4,14 +4,15 @@ import Bonus from './components/Bonus.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 
 function App() {
-  const state = useSelector((state) => state);
+  const amount = useSelector((state) => state.account.amount);
+  const points = useSelector((state) => state.bonus.points);
   const dispatch = useDispatch();
 
   return (
     <div style={{ border: '1px solid black', padding: '20px' }}>
       <h3>App</h3>
-      <div>Current Account : {state.account.amount} </div>
-      <div>Total Bonus : {state.bonus.points} </div>
+      <div>Total Amount : ${amount} </div>
+      <div>Total Bonus : {points} </div>
       <Account />
       <Bonus />
     </div>
