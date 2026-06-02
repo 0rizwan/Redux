@@ -6,7 +6,6 @@ import { decrement, increment, incrementByAmt } from '../slices/accountSlice';
 function Account() {
   const [inputVal, setInputVal] = useState(0);
   const account = useSelector(state => state.account);
-  const points = useSelector(state => state.bonus.points);
   const dispatch = useDispatch();
 
   function onType(e) {
@@ -21,7 +20,6 @@ function Account() {
           : account.error ? <p>{account.error}</p>
             : <div>Amount : ${account.amount} </div>
       }
-      <div>Points : {points} </div>
       <div>
         <button onClick={() => dispatch(increment())} >Increment +</button>
         <button onClick={() => dispatch(decrement())} >Decrement -</button>

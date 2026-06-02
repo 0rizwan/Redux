@@ -4,13 +4,11 @@ import { increment } from '../slices/bonusSlice';
 
 function Bonus() {
   const points = useSelector(state => state.bonus.points);
-  const amount = useSelector(state => state.account.amount);
   const dispatch = useDispatch();
 
   return (
     <div style={{ border: '1px solid black', padding: '20px' }}>
       <div>Bonus Component</div>
-      <div>Amount : ${amount}</div>
       <div>Points : {points}</div>
       <button onClick={() => dispatch(increment())} >Increment +</button>
     </div>
