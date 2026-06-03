@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { decrement, increment, incrementByAmt } from '../slices/accountSlice';
+import { decrement, getUserAccount, increment, incrementByAmt } from '../slices/accountSlice';
 
 function Account() {
   const [inputVal, setInputVal] = useState(0);
