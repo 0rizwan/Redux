@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 const initialState = {
+    id: null,
     amount: 1,
     pending: false,
     error: null
@@ -30,15 +31,21 @@ export const accountSlice = createSlice({
         }
     },
     extraReducers: (builder) => {
-        builder.addCase(getUserAccount.fulfilled, (state, action) => {
-            state.pending = false;
-            state.amount = action.payload;
-        }).addCase(getUserAccount.pending, (state, action) => {
-            state.pending = true;
-        }).addCase(getUserAccount.rejected, (state, action) => {
-            state.pending = false;
-            state.error = action.error.message;
-        });
+        builder
+            .addCase(getUserAccount.pending, (state) => {
+                state.pending = true;
+                state.error = null;
+            })
+            .addCase(getUserAccount.fulfilled, (state, action) => {
+                state.pending = false;
+                state.id = action.payload.id;
+                state.amount = action.payload.amount;
+                state.error = null;
+            })
+            .addCase(getUserAccount.rejected, (state, action) => {
+                state.pending = false;
+                state.error = action.error.message;
+            });
     }
 });
 

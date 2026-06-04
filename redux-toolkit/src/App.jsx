@@ -3,6 +3,7 @@ import Account from './components/Account.jsx'
 import Bonus from './components/Bonus.jsx'
 import { useDispatch, useSelector } from 'react-redux'
 import Reward from './components/Reward.jsx';
+import Admin from './components/Admin.jsx';
 
 function App() {
   const account = useSelector((state) => state.account);
@@ -23,6 +24,7 @@ function App() {
       <Account />
       <Bonus />
       <Reward />
+      <Admin />
     </div>
   )
 }
